@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="237.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WPM" textAlignment="CENTER" wrappingWidth="125.13671875">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text layoutX="415.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accuracy" textAlignment="CENTER" wrappingWidth="176.13671875">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text layoutX="32.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seconds" textAlignment="CENTER" wrappingWidth="165.13671875">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="wpm" layoutX="237.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="125.13671875">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="seconds" layoutX="52.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.13671875">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="accuracy" layoutX="440.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="125.13671875">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <TextField layoutX="202.0" layoutY="234.0" prefHeight="53.0" prefWidth="197.0" />
+      <Text layoutX="233.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="word" textAlignment="CENTER" wrappingWidth="135.13671875">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Text fill="#9a9a9a" layoutX="415.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="word" textAlignment="CENTER" wrappingWidth="135.13671875">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Button layoutX="265.0" layoutY="321.0" mnemonicParsing="false" text="Play Again" />
+      <ImageView fitHeight="200.0" fitWidth="190.0" layoutY="159.0" visible="false">
+         <image>
+            <Image url="@../../../../Pictures/1-10729_free-vector-green-checkmark-clip-art-green-circle.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="108.0" fitWidth="190.0" layoutX="408.0" layoutY="226.0" visible="false">
+         <image>
+            <Image url="@../../../../Pictures/503-5036239_red-x-mark-icon-good-mark-hd-png.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
