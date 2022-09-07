@@ -90,11 +90,12 @@ public class Controller implements Initializable{
                 counter++;
                 wpm.setText(String.valueOf(counter));
 
-                Thread t = new Thread(fadeCorrect)
+                Thread t = new Thread(fadeCorrect);
                 t.start();
             }
             else {
-                
+                Thread t = new Thread(fadeWrong);
+                t.start();
             }
         }
     }
