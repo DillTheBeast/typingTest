@@ -7,6 +7,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import javafx.fxml.FXML;
@@ -49,6 +51,11 @@ public class Controller implements Initializable{
 
     ArrayList<String> words = new ArrayList<>();
     private int wordCounter = 0;
+    private int first = 1;
+    private int timer = 60;
+    private int countAll = 0;
+    private int counter = 0;
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
     public void addToList() {
         //add words to the array list
@@ -79,6 +86,79 @@ public class Controller implements Initializable{
         wordCounter++;
     }
 
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            if(timer > -1 ) {
+                seconds.setText(String.valueOf(timer));
+                timer -= 1;
+            }
+            else { 
+                if(timer == -1) {
+                    inputWord.setDisable(true);
+                    inputWord.setText("Game Over");
+                }
+                if(timer == -4) {
+                    playAgain.setVisible(true);
+                    playAgain.setDisable(false);
+                    executor.shutdown();
+                }
+                timer -= 1;
+            }
+        }
+    };
+
+    Runnable fadeCorrect = new Runnable() {
+        @Override
+        public void run() {
+            correct.setOpacity(0);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            correct.setOpacity(50);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            correct.setOpacity(100);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            correct.setOpacity(0);
+        }
+    };
+
+    Runnable fadeWrong = new Runnable() {
+        @Override
+        public void run() {
+            correct.setOpacity(0);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            correct.setOpacity(50);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            correct.setOpacity(100);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            correct.setOpacity(0);
+        }
+    };
+
+    
     public void startGame(KeyEvent ke) {
         if(first == 1) {
             first = 0;
@@ -97,6 +177,7 @@ public class Controller implements Initializable{
                 Thread t = new Thread(fadeWrong);
                 t.start();
             }
+            currentWord.setText("");
         }
     }
 }
