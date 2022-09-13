@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="typingTest.Controller">
    <children>
       <Text layoutX="237.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WPM" textAlignment="CENTER" wrappingWidth="125.13671875">
          <font>
@@ -40,7 +40,7 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <TextField fx:id="inputWord" layoutX="202.0" layoutY="234.0" prefHeight="53.0" prefWidth="197.0" />
+      <TextField fx:id="inputWord" layoutX="202.0" layoutY="234.0" onKeyPressed="#startGame" prefHeight="53.0" prefWidth="197.0" />
       <Text fx:id="currentWord" layoutX="233.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="word" textAlignment="CENTER" wrappingWidth="135.13671875">
          <font>
             <Font size="27.0" />

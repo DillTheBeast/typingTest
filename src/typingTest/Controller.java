@@ -11,10 +11,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -38,7 +40,7 @@ public class Controller implements Initializable{
     private Text nextWord;
 
     @FXML
-    private Text inputWord;
+    private TextField inputWord;
 
     @FXML
     private ImageView correct;
@@ -52,38 +54,26 @@ public class Controller implements Initializable{
     ArrayList<String> words = new ArrayList<>();
     private int wordCounter = 0;
     private int first = 1;
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     private int timer = 60;
     private int countAll = 0;
     private int counter = 0;
-    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
 
     public void addToList() {
-        //add words to the array list
         BufferedReader reader;
         try {
-            reader = new BufferedReader(new FileReader("wordsList"));
-            String line = reader.readLine();
-            while(line != null) {
-                words.add(line);
-                //read next line
-                line = reader.readLine();
-            }
-            reader.close();
+            reader = new BufferedReader(new FileReader("/Users/dillonmaltese/Documents/GitHub/typingTest/src/wordsList"));
+        String line = reader.readLine();
+        while(line != null) {
+            words.add(line);
+            line = reader.readLine();
+        }
+        reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        playAgain.setVisible(false);     
-        playAgain.setDisable(true);
-        seconds.setText("60");
-        addToList();
-        Collections.shuffle(words);
-        currentWord.setText(words.get(wordCounter));   
-        currentWord.setText(words.get(wordCounter+1));
-        wordCounter++;
+        
     }
 
     Runnable r = new Runnable() {
@@ -107,7 +97,7 @@ public class Controller implements Initializable{
             }
         }
     };
-
+    
     Runnable fadeCorrect = new Runnable() {
         @Override
         public void run() {
@@ -158,15 +148,28 @@ public class Controller implements Initializable{
         }
     };
 
-    
-    public void startGame(KeyEvent ke) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        playAgain.setVisible(false);
+        playAgain.setDisable(true);
+        seconds.setText("60");
+        addToList();
+        Collections.shuffle(words);
+        currentWord.setText(words.get(wordCounter));
+        nextWord.setText(words.get(wordCounter + 1));
+        wordCounter++;
+    }
+
+    @FXML
+    void startGame(KeyEvent ke) {
         if(first == 1) {
             first = 0;
             executor.scheduleAtFixedRate(r, 0, 1, TimeUnit.SECONDS);
         }
         if(ke.getCode().equals(KeyCode.SPACE)) {
             countAll++;
-            if(currentWord.getText().equals(inputWord.getText())) {
+
+            if(inputWord.getText().equals(currentWord.getText())) {
                 counter++;
                 wpm.setText(String.valueOf(counter));
 
@@ -177,7 +180,12 @@ public class Controller implements Initializable{
                 Thread t = new Thread(fadeWrong);
                 t.start();
             }
-            currentWord.setText("");
+            inputWord.setText("");
+            accuracy.setText(String.valueOf(Math.round(counter*1.0/countAll)*100));
+            currentWord.setText(words.get(wordCounter));
+            nextWord.setText(words.get(wordCounter + 1));
+            wordCounter++;
         }
     }
+    
 }
