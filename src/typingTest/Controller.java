@@ -58,6 +58,7 @@ public class Controller implements Initializable{
     private int timer = 60;
     private int countAll = 0;
     private int counter = 0;
+    private int idx = 0;
 
 
     public void addToList() {
@@ -170,8 +171,7 @@ public class Controller implements Initializable{
             countAll++;
 
             if(inputWord.getText().equals(currentWord.getText())) {
-                counter++;
-                wpm.setText(String.valueOf(counter));
+                idx++;
 
                 Thread t = new Thread(fadeCorrect);
                 t.start();
@@ -181,7 +181,9 @@ public class Controller implements Initializable{
                 t.start();
             }
             inputWord.setText("");
-            accuracy.setText(String.valueOf(Math.round(counter*1.0/countAll)*100));
+            accuracy.setText(String.valueOf(Math.round(idx/countAll)*100));
+            wpm.getText();
+            wpm.setText(String.valueOf(idx));
             currentWord.setText(words.get(wordCounter));
             nextWord.setText(words.get(wordCounter + 1));
             wordCounter++;
