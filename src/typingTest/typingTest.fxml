@@ -52,14 +52,9 @@
          </font>
       </Text>
       <Button fx:id="playAgain" layoutX="265.0" layoutY="321.0" mnemonicParsing="false" text="Play Again" />
-      <ImageView fx:id="correct" fitHeight="200.0" fitWidth="190.0" layoutY="159.0" visible="false">
+      <ImageView fx:id="correct" fitHeight="200.0" fitWidth="183.0" layoutX="4.0" layoutY="159.0">
          <image>
-            <Image url="@../../../../Pictures/1-10729_free-vector-green-checkmark-clip-art-green-circle.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="incorrect" fitHeight="108.0" fitWidth="190.0" layoutX="408.0" layoutY="226.0" visible="false">
-         <image>
-            <Image url="@../../../../Pictures/503-5036239_red-x-mark-icon-good-mark-hd-png.png" />
+            <Image url="@../../../../../Downloads/Player.png" />
          </image>
       </ImageView>
    </children>

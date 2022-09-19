@@ -116,11 +116,11 @@ public class Controller implements Initializable{
             }
             correct.setOpacity(100);
             try {
-                Thread.sleep(200);
+                Thread.sleep(200000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            correct.setOpacity(0);
+            incorrect.setOpacity(0);
         }
     };
 
@@ -151,6 +151,8 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        correct.setOpacity(0);
+        //incorrect.setOpacity(0);
         playAgain.setVisible(false);
         playAgain.setDisable(true);
         seconds.setText("60");
@@ -168,10 +170,31 @@ public class Controller implements Initializable{
             executor.scheduleAtFixedRate(r, 0, 1, TimeUnit.SECONDS);
         }
         if(ke.getCode().equals(KeyCode.SPACE)) {
-            countAll++;
+            if(countAll == 0) {
+                countAll++;
+                if(inputWord.getText().equals(currentWord.getText())) {
+                    idx++;
+    
+                    Thread t = new Thread(fadeCorrect);
+                    t.start();
+                }
+                else {
+                    Thread t = new Thread(fadeWrong);
+                    t.start();
+                }
+                
+                inputWord.setText("");
+                accuracy.setText(String.valueOf(Math.round(idx/countAll)*100));
+                wpm.getText();
+                wpm.setText(String.valueOf(idx));
+                wordCounter+=1;
+                currentWord.setText(words.get(wordCounter));
+                nextWord.setText(words.get(wordCounter + 1));
+            }
 
-            if(inputWord.getText().equals(currentWord.getText())) {
+            if(inputWord.getText().equals(" " + currentWord.getText())) {
                 idx++;
+                countAll++;
 
                 Thread t = new Thread(fadeCorrect);
                 t.start();
@@ -180,14 +203,15 @@ public class Controller implements Initializable{
                 Thread t = new Thread(fadeWrong);
                 t.start();
             }
+            
             inputWord.setText("");
             accuracy.setText(String.valueOf(Math.round(idx/countAll)*100));
             wpm.getText();
             wpm.setText(String.valueOf(idx));
+            wordCounter+=1;
             currentWord.setText(words.get(wordCounter));
             nextWord.setText(words.get(wordCounter + 1));
-            wordCounter++;
         }
     }
+    }
     
-}
