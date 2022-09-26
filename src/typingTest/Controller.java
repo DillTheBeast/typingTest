@@ -60,6 +60,31 @@ public class Controller implements Initializable{
     private int counter = 0;
     private int idx = 0;
 
+    @FXML
+    void onPlayAgainClick(ActionEvent event) {
+        wordCounter = 0;
+        first = 1;
+        timer = 60;
+        countAll = 0;
+        counter = 0;
+        idx = 0;
+        inputWord.setDisable(false);
+        correct.setOpacity(0);
+        incorrect.setOpacity(0);
+        playAgain.setVisible(false);
+        playAgain.setDisable(true);
+        seconds.setText("60");
+        addToList();
+        Collections.shuffle(words);
+        currentWord.setText(words.get(wordCounter));
+        nextWord.setText(words.get(wordCounter + 1));
+        wordCounter++;
+        inputWord.setText("");
+        wpm.getText();
+        wpm.setText(String.valueOf(idx));
+        currentWord.setText(words.get(wordCounter));
+        nextWord.setText(words.get(wordCounter + 1));
+    }
 
     public void addToList() {
         BufferedReader reader;
@@ -116,43 +141,45 @@ public class Controller implements Initializable{
             }
             correct.setOpacity(100);
             try {
-                Thread.sleep(200000);
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            correct.setOpacity(0);
+        }
+    };
+
+    
+    Runnable fadeWrong = new Runnable() {
+        @Override
+        public void run() {
+            incorrect.setOpacity(0);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            incorrect.setOpacity(50);
+            try {
+                Thread.sleep(200);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            incorrect.setOpacity(100);
+            try {
+                Thread.sleep(200);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             incorrect.setOpacity(0);
         }
     };
-
-    Runnable fadeWrong = new Runnable() {
-        @Override
-        public void run() {
-            correct.setOpacity(0);
-            try {
-                Thread.sleep(200);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            correct.setOpacity(50);
-            try {
-                Thread.sleep(200);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            correct.setOpacity(100);
-            try {
-                Thread.sleep(200);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            correct.setOpacity(0);
-        }
-    };
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         correct.setOpacity(0);
-        //incorrect.setOpacity(0);
+        incorrect.setOpacity(0);
         playAgain.setVisible(false);
         playAgain.setDisable(true);
         seconds.setText("60");
@@ -171,7 +198,6 @@ public class Controller implements Initializable{
         }
         if(ke.getCode().equals(KeyCode.SPACE)) {
             if(countAll == 0) {
-                countAll++;
                 if(inputWord.getText().equals(currentWord.getText())) {
                     idx++;
     
@@ -183,8 +209,8 @@ public class Controller implements Initializable{
                     t.start();
                 }
                 
+                countAll++;
                 inputWord.setText("");
-                accuracy.setText(String.valueOf(Math.round(idx/countAll)*100));
                 wpm.getText();
                 wpm.setText(String.valueOf(idx));
                 wordCounter+=1;
@@ -205,7 +231,6 @@ public class Controller implements Initializable{
             }
             
             inputWord.setText("");
-            accuracy.setText(String.valueOf(Math.round(idx/countAll)*100));
             wpm.getText();
             wpm.setText(String.valueOf(idx));
             wordCounter+=1;

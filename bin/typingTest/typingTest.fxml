@@ -10,32 +10,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="typingTest.Controller">
    <children>
-      <Text layoutX="237.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WPM" textAlignment="CENTER" wrappingWidth="125.13671875">
+      <Text layoutX="368.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WPM" textAlignment="CENTER" wrappingWidth="125.13671875">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <Text layoutX="415.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accuracy" textAlignment="CENTER" wrappingWidth="176.13671875">
+      <Text layoutX="71.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seconds" textAlignment="CENTER" wrappingWidth="165.13671875">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <Text layoutX="32.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seconds" textAlignment="CENTER" wrappingWidth="165.13671875">
+      <Text fx:id="wpm" layoutX="368.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="125.13671875">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
-      <Text fx:id="wpm" layoutX="237.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="125.13671875">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Text>
-      <Text fx:id="seconds" layoutX="52.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.13671875">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Text>
-      <Text fx:id="accuracy" layoutX="440.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="125.13671875">
+      <Text fx:id="seconds" layoutX="91.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.13671875">
          <font>
             <Font size="40.0" />
          </font>
@@ -51,10 +41,15 @@
             <Font size="27.0" />
          </font>
       </Text>
-      <Button fx:id="playAgain" layoutX="265.0" layoutY="321.0" mnemonicParsing="false" text="Play Again" />
-      <ImageView fx:id="correct" fitHeight="200.0" fitWidth="183.0" layoutX="4.0" layoutY="159.0" visible="false">
+      <Button fx:id="playAgain" layoutX="265.0" layoutY="321.0" mnemonicParsing="false" onAction="#onPlayAgainClick" text="Play Again" />
+      <ImageView fx:id="correct" fitHeight="200.0" fitWidth="200.0" layoutX="2.0" layoutY="187.0">
          <image>
-            <Image url="@../../../../../Downloads/Player.png" />
+            <Image url="@green-check-mark-icon-in-a-circle-free-vector.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="incorrect" fitHeight="108.0" fitWidth="200.0" layoutX="399.0" layoutY="233.0">
+         <image>
+            <Image url="@503-5036239_red-x-mark-icon-good-mark-hd-png.png" />
          </image>
       </ImageView>
    </children>
