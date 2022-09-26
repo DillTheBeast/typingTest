@@ -51,6 +51,9 @@ public class Controller implements Initializable{
     @FXML
     private Button playAgain;
 
+    @FXML
+    private Text instructions;
+
     ArrayList<String> words = new ArrayList<>();
     private int wordCounter = 0;
     private int first = 1;
@@ -84,6 +87,7 @@ public class Controller implements Initializable{
         wpm.setText(String.valueOf(idx));
         currentWord.setText(words.get(wordCounter));
         nextWord.setText(words.get(wordCounter + 1));
+        return;
     }
 
     public void addToList() {
@@ -192,33 +196,14 @@ public class Controller implements Initializable{
 
     @FXML
     void startGame(KeyEvent ke) {
-        if(first == 1) {
-            first = 0;
-            executor.scheduleAtFixedRate(r, 0, 1, TimeUnit.SECONDS);
-        }
         if(ke.getCode().equals(KeyCode.SPACE)) {
-            if(countAll == 0) {
-                if(inputWord.getText().equals(currentWord.getText())) {
-                    idx++;
-    
-                    Thread t = new Thread(fadeCorrect);
-                    t.start();
-                }
-                else {
-                    Thread t = new Thread(fadeWrong);
-                    t.start();
-                }
-                
-                countAll++;
-                inputWord.setText("");
-                wpm.getText();
-                wpm.setText(String.valueOf(idx));
-                wordCounter+=1;
-                currentWord.setText(words.get(wordCounter));
-                nextWord.setText(words.get(wordCounter + 1));
+            if(first == 1) {
+                first = 0;
+                instructions.setVisible(false);
+                executor.scheduleAtFixedRate(r, 0, 1, TimeUnit.SECONDS);
+                return;
             }
-
-            if(inputWord.getText().equals(" " + currentWord.getText())) {
+            else if(inputWord.getText().equals(" " + currentWord.getText())) {
                 idx++;
                 countAll++;
 

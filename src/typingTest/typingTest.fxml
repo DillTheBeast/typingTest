@@ -52,5 +52,10 @@
             <Image url="@503-5036239_red-x-mark-icon-good-mark-hd-png.png" />
          </image>
       </ImageView>
+      <Text fx:id="instructions" layoutX="192.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press Space to Begin" textAlignment="CENTER" wrappingWidth="216.13671875">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
