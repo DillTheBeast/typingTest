@@ -76,6 +76,7 @@ public class Controller implements Initializable{
         incorrect.setOpacity(0);
         playAgain.setVisible(false);
         playAgain.setDisable(true);
+        instructions.setVisible(true);
         seconds.setText("60");
         addToList();
         Collections.shuffle(words);
@@ -87,7 +88,7 @@ public class Controller implements Initializable{
         wpm.setText(String.valueOf(idx));
         currentWord.setText(words.get(wordCounter));
         nextWord.setText(words.get(wordCounter + 1));
-        return;
+        executor.scheduleAtFixedRate(r, 0, 1, TimeUnit.SECONDS);
     }
 
     public void addToList() {
